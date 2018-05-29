@@ -6,6 +6,7 @@ import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
 import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
+import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
 @Configuration
@@ -15,6 +16,7 @@ public class RoutingConfiguration {
     public RouterFunction<ServerResponse> monoRouterFunction(TvshowsHandler tvshowsHandler) {
         return route(GET("/tvshows"), tvshowsHandler::getTvShows)
                 .andRoute(GET("/tvshowsnames"), tvshowsHandler::getTvShowsNames)
-                .andRoute(GET("/tvshows/{id}"), tvshowsHandler::getTvShow);
+                .andRoute(GET("/tvshows/{id}"), tvshowsHandler::getTvShow)
+                .andRoute(POST("/tvshows"), tvshowsHandler::createTvShow);
     }
 }
